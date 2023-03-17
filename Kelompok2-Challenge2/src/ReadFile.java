@@ -21,7 +21,7 @@ public class ReadFile extends Rumus {
             }
 
             for (String row : lines) {
-                String[] values = row.split(";"); // separator bisa diubah sesuai dengan format file csv
+                String[] values = row.split(";");
                 ArrayList<String> rowData = new ArrayList<>();
                 Collections.addAll(rowData, values);
                 data.add(rowData);
@@ -29,14 +29,6 @@ public class ReadFile extends Rumus {
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
 
         return data;

@@ -2,11 +2,8 @@ import java.util.*;
 
 public class Rumus {
 
-    static double mean, median, modus;
-
-    static int satu = 0, dua = 0, tiga = 0, empat = 0, lima = 0 , enam = 0 , tujuh = 0 ,
-            delapan = 0 , sembilan = 0 , sepuluh = 0, dibawah_lima = 0;
-    static double banyak_data = 0, jumlah = 0;
+    static double mean, median, modus, banyak_data = 0, jumlah = 0;
+    static int satu = 0, dua = 0, tiga = 0, empat = 0, lima = 0 , enam = 0 , tujuh = 0 , delapan = 0 , sembilan = 0 , sepuluh = 0, dibawah_lima = 0;
 
     public static double getMean() {
         return mean;
@@ -32,13 +29,13 @@ public class Rumus {
         Rumus.modus = paramModus;
     }
 
-    public void tes(){
-        jumlah = satu + dua * 2 + tiga * 3 + empat * 4
+    public void dataMeanMedian(){
+        jumlah = satu * 1 + dua * 2 + tiga * 3 + empat * 4
                 + lima * 5 + enam * 6 + tujuh * 7 + delapan * 8 + sembilan * 9 + sepuluh*10;
         banyak_data = satu+dua+tiga+empat+lima+enam+tujuh+delapan+sembilan+sepuluh;
     }
     public void calculateMean() {
-        tes();
+        dataMeanMedian();
         mean = jumlah/banyak_data;
         setMean(mean);
     }
@@ -73,4 +70,3 @@ public class Rumus {
         setModus(maxKey);
     }
 }
-

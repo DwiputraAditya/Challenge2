@@ -6,13 +6,13 @@ public class Main extends Rumus{
     private static Scanner input = new Scanner(System.in);
     private static int pilihan = -1;
     static ArrayList list = new ArrayList();
+    static ReadFile read = new ReadFile();
 
     public static void main(String[] args) throws IOException {
         MainMenu();
     }
 
     public static void MainMenu() throws IOException {
-        ReadFile read = new ReadFile();
         ArrayList<ArrayList<String>> data = read.Read("C:\\temp\\direktori\\data_sekolah.csv");
 
         String regex = "\\b([1-9]|[1-9][0-9]|100)\\b";
@@ -30,30 +30,22 @@ public class Main extends Rumus{
                     dua++;
                     dibawah_lima++;
                 }else if(value.equals("3")){
-
                     tiga++;
                     dibawah_lima++;
                 }else if(value.equals("4")){
-
                     empat++;
                     dibawah_lima++;
                 }else if(value.equals("5")){
-
                     lima++;
                 }else if(value.equals("6")){
-
                     enam++;
                 }else if(value.equals("7")){
-
                     tujuh++;
                 }else if(value.equals("8")){
-
                     delapan++;
                 }else if(value.equals("9")){
-
                     sembilan++;
                 }else if(value.equals("10")){
-
                     sepuluh++;
                 }
             }
@@ -63,7 +55,6 @@ public class Main extends Rumus{
         Rumus rumus = new Rumus();
 
         while(pilihan != 0) {
-//            System.out.println(list);
             System.out.println("------------------------------------------------------------");
             System.out.println("Aplikasi Pengolah Nilai Siswa");
             System.out.println("------------------------------------------------------------");
@@ -82,20 +73,34 @@ public class Main extends Rumus{
 
             switch (pilihan){
                 case 1:
-                    wf.createFrek();
-                    wf.createModus();
-                    scsOutput(" Modus ");
+                    try{
+                        wf.createFrek();
+                        wf.createModus();
+                        scsOutput(" Modus ");
+                    }catch (IOException er){
+                        failOutput(" C:\\temp\\direktori\\ ");
+                        er.printStackTrace();
+                    }
                     break;
                 case 2:
-                    wf.createFrek();
-                    wf.createMean();
-                    wf.createMedian();
-                    scsOutput(" Mean & Median ");
+                    try{
+                        wf.createFrek();
+                        wf.createMean();
+                        wf.createMedian();
+                        scsOutput(" Mean & Median ");
+                    }catch (IOException er){
+                        failOutput(" C:\\temp\\direktori\\ ");
+                        er.printStackTrace();
+                    }
                     break;
                 case 3:
-                    wf.createFrek();
-                    wf.createBoth();
-                    scsOutput(" Modus,Mean,Median ");
+                    try{
+                        wf.createBoth();
+                        scsOutput(" Modus,Mean,Median ");
+                    }catch (IOException er){
+                        failOutput(" C:\\temp\\direktori\\ ");
+                        er.printStackTrace();
+                    }
                     break;
                 case 0:
                     System.exit(0);
@@ -105,14 +110,13 @@ public class Main extends Rumus{
                     MainMenu();
             }
         }
-
     }
 
     public static void scsOutput(String perhitungan) throws IOException{
         System.out.println("------------------------------------------------------------");
         System.out.println("Aplikasi Pengolah Nilai Siswa");
         System.out.println("------------------------------------------------------------");
-        System.out.println("File" + perhitungan +"telah di generate di C:/Users/ARJ/IdeaProjects/dirData");
+        System.out.println("File" + perhitungan +"telah di generate di C:\\temp\\direktori\\ ");
         System.out.println("silahkan cek\n");
         System.out.println("0 Exit");
         System.out.println("1 Kembali ke main menu");
@@ -123,5 +127,13 @@ public class Main extends Rumus{
             System.out.println("Terimakasih telah menggunakan program ini");
             System.exit(0);
         }
+    }
+
+    public static void failOutput(String path) throws IOException{
+        System.err.println("------------------------------------------------------------");
+        System.err.println("Aplikasi Pengolah Nilai Siswa");
+        System.err.println("------------------------------------------------------------");
+        System.err.println("Directory" + path + "tidak ditemukan\n");
+        System.exit(0);
     }
 }
